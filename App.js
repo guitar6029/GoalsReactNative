@@ -32,7 +32,7 @@ export default function App() {
       <View style={styles.goalsContainer}>
         { goals.length > 0 ? <Text>List of Goals</Text> : <Text>No Goals Added Yet</Text> }
         {goals.map((goal, index) => (
-          <Text key={index} style={{ padding: 8, borderBottomWidth: 1 }}>
+          <Text key={index} style={styles.goalItem}>
             {goal}
           </Text>
         ))}
@@ -64,5 +64,13 @@ const styles = StyleSheet.create({
   },
   goalsContainer: {
     padding: 16,
+  },
+  goalItem: {
+    marginVertical: 8,
+    padding: 8,
+    borderColor: "#cccccc",
+    borderWidth: 1,
+    borderRadius: 6,
+    backgroundColor: "#f9f9f9",
   },
 });
