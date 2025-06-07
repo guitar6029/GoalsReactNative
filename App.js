@@ -30,11 +30,15 @@ export default function App() {
         />
       </View>
       <View style={styles.goalsContainer}>
-        { goals.length > 0 ? <Text>List of Goals</Text> : <Text>No Goals Added Yet</Text> }
+        {goals.length > 0 ? (
+          <Text>List of Goals</Text>
+        ) : (
+          <Text>No Goals Added Yet</Text>
+        )}
         {goals.map((goal, index) => (
-          <Text key={index} style={styles.goalItem}>
-            {goal}
-          </Text>
+          <View style={styles.goalItem} key={index}>
+            <Text>{goal}</Text>
+          </View>
         ))}
         {/* This is where the list of goals will be rendered */}
       </View>
