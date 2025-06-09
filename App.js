@@ -1,14 +1,8 @@
-import { StatusBar } from "expo-status-bar";
-import {
-  Button,
-  FlatList,
-  ScrollView,
-  StyleSheet,
-  Text,
-  TextInput,
-  View,
-} from "react-native";
+import { Button, FlatList, StyleSheet, Text, View } from "react-native";
 import { useState } from "react";
+import GoalItem from "./components/GoalItem";
+import GoalInput from "./components/GoalInput";
+import uuid from "react-native-uuid";
 export default function App() {
   const [goalInput, setGoalInput] = useState("");
   const [goals, setGoals] = useState([]);
@@ -18,22 +12,17 @@ export default function App() {
   }
 
   function addGoalHandler() {
-    setGoals(
-      (prev) =>
-        (prev = [...prev, { key: crypto.randomUUID(), text: goalInput }])
-    );
+    setGoals((prev) => [
+      ...prev,
+      { key: uuid.v4().toString(), text: goalInput },
+    ]);
     setGoalInput("");
   }
 
   return (
     <View style={styles.appContainer}>
       <View style={styles.inputContainer}>
-        <TextInput
-          onChangeText={(e) => goalInputHandler(e)}
-          style={styles.goalInput}
-          value={goalInput}
-          placeholder="Your course goal!"
-        />
+        <GoalInput goalInput={goalInput} setGoalInput={goalInputHandler} />
         <Button
           disabled={!goalInput}
           onPress={addGoalHandler}
@@ -50,25 +39,17 @@ export default function App() {
           data={goals}
           renderItem={(item) => {
             return (
-              <View style={styles.goalItemContainer}>
-                <View style={styles.goalItem}>
-                  <Text>{item.item}</Text>
-                </View>
-                <View>
-                  <Button
-                    title="Delete"
-                    onPress={() => {
-                      setGoals((prev) =>
-                        prev.filter((_, i) => i !== item.index)
-                      );
-                    }}
-                  />
-                </View>
-              </View>
+              <GoalItem
+                id={item.item.key}
+                text={item.item.text}
+                onDelete={(id) => {
+                  setGoals((prev) => prev.filter((goal) => goal.key !== id));
+                }}
+              />
             );
           }}
           alwaysBounceHorizontal={false}
-          styles={styles.scrollView}
+          style={styles.scrollView}
         />
       </View>
     </View>
