@@ -1,8 +1,6 @@
 import { View, Text, Button } from "react-native";
 import { StyleSheet } from "react-native";
 export default function GoalItem({ text, onDelete, id }) {
-
-    console.log("GoalItem rendered", text, id);
   const styles = StyleSheet.create({
     goalItem: {
       padding: 8,
