@@ -18,7 +18,10 @@ export default function App() {
   }
 
   function addGoalHandler() {
-    setGoals((prev) => (prev = [...prev, goalInput]));
+    setGoals(
+      (prev) =>
+        (prev = [...prev, { key: crypto.randomUUID(), text: goalInput }])
+    );
     setGoalInput("");
   }
 
