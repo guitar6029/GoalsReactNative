@@ -4,29 +4,20 @@ import GoalItem from "./components/GoalItem";
 import GoalInput from "./components/GoalInput";
 import uuid from "react-native-uuid";
 export default function App() {
-  const [goalInput, setGoalInput] = useState("");
   const [goals, setGoals] = useState([]);
 
-  function goalInputHandler(text) {
-    setGoalInput(text);
-  }
-
-  function addGoalHandler() {
+  function addGoalHandler(goalInput) {
     setGoals((prev) => [
       ...prev,
       { key: uuid.v4().toString(), text: goalInput },
     ]);
-    setGoalInput("");
   }
 
   return (
     <View style={styles.appContainer}>
       <View style={styles.inputContainer}>
-        <GoalInput goalInput={goalInput} setGoalInput={goalInputHandler} />
-        <Button
-          disabled={!goalInput}
-          onPress={addGoalHandler}
-          title="Add Goal"
+        <GoalInput
+          onGoalAdd={(goalInput) => addGoalHandler(goalInput)}
         />
       </View>
       <View style={styles.goalsContainer}>
