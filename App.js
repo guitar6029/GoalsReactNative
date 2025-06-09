@@ -1,5 +1,13 @@
 import { StatusBar } from "expo-status-bar";
-import { StyleSheet, Text, View, Button, TextInput } from "react-native";
+import {
+  Button,
+  FlatList,
+  ScrollView,
+  StyleSheet,
+  Text,
+  TextInput,
+  View,
+} from "react-native";
 import { useState } from "react";
 export default function App() {
   const [goalInput, setGoalInput] = useState("");
@@ -35,12 +43,30 @@ export default function App() {
         ) : (
           <Text>No Goals Added Yet</Text>
         )}
-        {goals.map((goal, index) => (
-          <View style={styles.goalItem} key={index}>
-            <Text>{goal}</Text>
-          </View>
-        ))}
-        {/* This is where the list of goals will be rendered */}
+        <FlatList
+          data={goals}
+          renderItem={(item) => {
+            return (
+              <View style={styles.goalItemContainer}>
+                <View style={styles.goalItem}>
+                  <Text>{item.item}</Text>
+                </View>
+                <View>
+                  <Button
+                    title="Delete"
+                    onPress={() => {
+                      setGoals((prev) =>
+                        prev.filter((_, i) => i !== item.index)
+                      );
+                    }}
+                  />
+                </View>
+              </View>
+            );
+          }}
+          alwaysBounceHorizontal={false}
+          styles={styles.scrollView}
+        />
       </View>
     </View>
   );
@@ -68,13 +94,27 @@ const styles = StyleSheet.create({
   },
   goalsContainer: {
     padding: 16,
+    display: "flex",
+    flexDirection: "column",
+    gap: 10,
   },
   goalItem: {
-    marginVertical: 8,
     padding: 8,
     borderColor: "#cccccc",
     borderWidth: 1,
     borderRadius: 6,
     backgroundColor: "#f9f9f9",
+    width: "80%",
+  },
+  goalItemContainer: {
+    display: "flex",
+    flexDirection: "row",
+    justifyContent: "space-between",
+    marginBottom: 10,
+  },
+  scrollView: {
+    display: "flex",
+    flexDirection: "column",
+    gap: 10,
   },
 });
