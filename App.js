@@ -1,4 +1,4 @@
-import { StyleSheet, View, Modal, Button } from "react-native";
+import { StyleSheet, View, Modal, Button, Image } from "react-native";
 import { useState } from "react";
 import GoalInput from "./components/GoalInput";
 import uuid from "react-native-uuid";
@@ -36,6 +36,13 @@ export default function App() {
         </Modal>
       )}
       <View style={styles.appContainer}>
+        <View style={{ alignItems: "center", marginBottom: 20 }}>
+          <Image
+            source={require("./assets/goal.png")}
+            style={{ width: 100, height: 100, marginBottom: 20 }}
+            resizeMode="contain"
+          />
+        </View>
         <View>
           <Button
             title="Add New Goal"
@@ -59,7 +66,7 @@ const styles = StyleSheet.create({
     flex: 1,
     paddingTop: 50,
     paddingHorizontal: 16,
-    backgroundColor: "#fff",
+    backgroundColor: "#9fc",
   },
   inputContainer: {
     flexDirection: "row",
@@ -70,6 +77,6 @@ const styles = StyleSheet.create({
     flexDirection: "column",
     justifyContent: "center",
     alignItems: "center",
-    backgroundColor: "#fff",
+    backgroundColor: "#9fc",
   },
 });
