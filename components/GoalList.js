@@ -1,7 +1,7 @@
 import { View, FlatList, Text, StyleSheet } from "react-native";
 import GoalItem from "./GoalItem";
 
-export default function GoalList({ dataList, onDelete }) {
+export default function GoalList({ dataList, onDelete, allowToEdit = false }) {
   const styles = StyleSheet.create({
     goalsContainer: {
       padding: 16,
@@ -39,6 +39,7 @@ export default function GoalList({ dataList, onDelete }) {
             <GoalItem
               id={item.item.key}
               text={item.item.text}
+              allowToEdit={allowToEdit}
               onDelete={() => onDelete(item.item.key)}
             />
           );

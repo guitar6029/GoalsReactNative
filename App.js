@@ -20,6 +20,7 @@ export default function App() {
       </View>
       <GoalList
         dataList={goals}
+        allowToEdit
         onDelete={(id) =>
           setGoals((prev) => prev.filter((goal) => goal.key !== id))
         }
