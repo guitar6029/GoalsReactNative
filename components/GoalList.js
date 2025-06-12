@@ -4,7 +4,6 @@ import GoalItem from "./GoalItem";
 export default function GoalList({ dataList, onDelete, allowToEdit = false }) {
   const styles = StyleSheet.create({
     goalsContainer: {
-      padding: 16,
       display: "flex",
       flexDirection: "column",
       gap: 10,

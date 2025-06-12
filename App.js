@@ -64,8 +64,8 @@ export default function App() {
 const styles = StyleSheet.create({
   appContainer: {
     flex: 1,
-    paddingTop: 50,
-    paddingHorizontal: 16,
+    padding: 16,
+    gap: 10,
     backgroundColor: "#9fc",
   },
   inputContainer: {
