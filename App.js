@@ -29,6 +29,9 @@ export default function App() {
             <View style={styles.inputContainer}>
               <GoalInput onGoalAdd={(goalInput) => addGoalHandler(goalInput)} />
             </View>
+            <View style={{ marginTop: 20 }}>
+              <Button title="Close" onPress={() => setIsModalVisible(false)} />
+            </View>
           </View>
         </Modal>
       )}
